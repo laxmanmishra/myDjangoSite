@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.models import User, auth
+from .models import Product
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -15,10 +17,10 @@ def dashboard(request):
 
 def product(request):  
 
-    user_list = User.objects.all()
+    product_list = Product.objects.all()
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(user_list, 10)
+    paginator = Paginator(product_list, 10)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -26,7 +28,21 @@ def product(request):
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
 
-    return render(request, "product.html",{ 'users': users })
+    return render(request, "product.html",{ 'products': product_list })
+
+def addProduct(request):
+
+    if request.method == "POST":
+        name = request.POST['name']
+        price = request.POST['price']
+        description = request.POST['description']
+        img = request.POST['pic']
+        
+        product = Product(name = name, price = price, description = description, img = img)
+        product.save()
+        messages.info(request, "Product Craeted Successfully")       
+
+    return render(request, "addProduct.html")
 
 def user(request):  
 
@@ -44,6 +60,27 @@ def user(request):
     return render(request, "user.html",{ 'users': users })
 
 def addUser(request):
+    if request.method == "POST":
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        password = request.POST['password']
+        conf_password = request.POST['conf_password']
+        email = request.POST['email']
+
+        if password == conf_password :
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "User Already Exist")
+            elif  User.objects.filter(email=email).exists():
+                messages.info(request, "User Already Exist")
+            else: 
+                user = User.objects.create_user(username = username, password = password, email = email, first_name = first_name, last_name = last_name)
+                user.save()
+                messages.info(request, "User Craeted Successfully")
+
+        else:
+              messages.info(request, "Password shoud be match")          
+
     return render(request, "addUser.html")
 
 def logout(request):    
