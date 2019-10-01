@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -11,6 +11,24 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     #return HttpResponse("Hello World")
     return render(request, "login.html")
+
+def login(request):
+    
+    if request.method == "POST":
+        #return HttpResponse(request.POST.items())
+        username = request.POST['username']
+        password = request.POST['password']
+        #return HttpResponse(username)
+        user = auth.authenticate(username = username, password = password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.info(request, 'invalid credential')    
+            return redirect('/')
+    else:
+        messages.info(request, 'invalid post')  
+        return redirect('/')        
 
 def dashboard(request):    
     return render(request, "index.html")
