@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.contrib.sessions.models import Session
 from .models import Product
+
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -10,6 +12,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def index(request):
     #return HttpResponse("Hello World")
+    if request.session.has_key('loggedin'):
+        return redirect('dashboard')
     return render(request, "login.html")
 
 def login(request):
@@ -22,6 +26,7 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request, user)
+            request.session['loggedin'] = True 
             return redirect('dashboard')
         else:
             messages.info(request, 'invalid credential')    
@@ -102,4 +107,8 @@ def addUser(request):
     return render(request, "addUser.html")
 
 def logout(request):    
+    try:
+      del request.session['loggedin']
+    except:
+      pass
     return render(request, "login.html")    
