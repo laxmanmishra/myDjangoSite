@@ -46,7 +46,7 @@
     <header class="main-header">
   
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="dashboard" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
@@ -246,8 +246,9 @@
           <li class="header">HEADER</li>
           <!-- Optionally, you can add icons to the links -->
           <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-          <li><a href="product"><i class="fa fa-link"></i> <span>Product</span></a></li>
-          <li><a href="user"><i class="fa fa-link"></i> <span>User</span></a></li>
+          <li><a href="{% url 'customer' %}"><i class="fa fa-link"></i> <span>Customer</span></a></li>
+          <li><a href="{% url 'product' %}"><i class="fa fa-link"></i> <span>Product</span></a></li>
+          <li><a href="{% url 'user' %}"><i class="fa fa-link"></i> <span>User</span></a></li>
           <li class="treeview">
             <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
               <span class="pull-right-container">

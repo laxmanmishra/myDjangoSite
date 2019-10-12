@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="content-header">
+  <h1>
+    {{customer.name}}    <small>User Detail</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+    <li class="active">Here</li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="jumbotron">
+        <div class="row">
+                <div class="col-md-6">
+                    <h4>Father Name</h4>
+                    <h5>{{customer.father_name}}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h4>Chessis No</h5>
+                    <h5>{{customer.chassisno}}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h4>Sale Of Date</h5>
+                    <h5>{{customer.date_of_sales_letter}}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h4>Manufather date</h5>
+                    <h5>{{customer.month_and_year_manufacture}}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h4>Address</h5>
+                    <h5>{{custome.address}}</h5>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <div class="col-md-4">
+                    <a href="{% static "doument/" %} ">{{customer.aadhar_pdf}}</a>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Aadhar</label>
+                            <input type="file" name="aadhar" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                        <a href="{% static "doument/" %} ">{{customer.tax_reciept_pdf}}</a>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleFormControlFile2">Upload Tax Receipt</label>
+                            <input type="file" name="receipt" class="form-control-file" id="exampleFormControlFile2">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% static "doument/" %} ">{{customer.insurance_pdf}}</a>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleFormControlFile2">Upload Insurance</label>
+                            <input type="file" name="insurance" class="form-control-file" id="exampleFormControlFile2">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

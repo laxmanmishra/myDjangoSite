@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="content-header">
+  <h1>
+    Customer
+    <small>customer details</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+    <li class="active">Here</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="col-md-3 pull-right"><button type="button" class="btn btn-primary pull-right" onclick="window.location.href='addCustomer'">Add Customer</button></div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Chassis No.</th>
+            <th>Date of Sale Letter</th>
+            <th>Month & Year of Manufacture</th>
+            <th>Address </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customers %}
+            <tr>
+              <td>{{ customer.name }}</td>
+              <td>{{ customer.father_name }}</td>
+              <td>{{ customer.chassisno }}</td>
+              <td>{{ customer.date_of_sales_letter }}</td>
+              <td>{{ customer.month_and_year_manufacture }}</td>
+              <td>{{ customer.address }}</td>
+              <th><a href="viewCustomer/{{customer.id}}"><i class="fa fa-fw fa-eye"></i></a>&nbsp;&nbsp;<a href="#"><i class="fa fa-trash-o"></i></a></th>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+      <div class="col-md-12">
+          {% if customers.has_other_pages %}
+          <ul class="pagination">
+            {% if customers.has_previous %}
+              <li><a href="?page={{ customers.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in customers.paginator.page_range %}
+              {% if customers.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if customers.has_next %}
+              <li><a href="?page={{ customers.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+      </div>
+      
+</section>
+{% endblock %}

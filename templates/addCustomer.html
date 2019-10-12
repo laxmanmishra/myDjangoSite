@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="content-header">
+  <h1>
+    Add Customer
+    <small>Optional description</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+    <li class="active">Here</li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+        <div>
+          {% for message in messages %}
+            <p> {{ message }}</p>
+          {% endfor %}
+        </div>
+        <form enctype="multipart/form-data" action="addCustomer" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-12">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="name">Name *</label>
+                      <input type="text" class="form-control" name ="name" id="name" aria-describedby="nameHelp" placeholder="Enter Name">
+                      <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="fname">Father Name *</label>
+                      <input type="text" class="form-control" name ="father_name" id="fname" aria-describedby="nameHelp" placeholder="Enter Father Name">
+                      <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Chassis No. *</label>
+                        <input type="text" class="form-control" name ="chassis_no" id="chassis" aria-describedby="nameHelp" placeholder="Enter Chassis no">
+                        <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="date_of_sale">Date of Sale *</label>
+                      <input type="date" class="form-control" name ="date_of_sale" id="date_of_sale" aria-describedby="priceHelp" placeholder="Date of Sale Letter">
+                      <small id="priceHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="date_of_sale">Manufaturing Month & Year</label>
+                      <input type="date" class="form-control" name ="date_of_sale" id="date_of_sale" aria-describedby="priceHelp" placeholder="Date of Sale Letter">
+                      <small id="priceHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                </div>
+            </div>
+          </div>    
+          <div class="col-md-12">
+              <div class="form-group">
+                  <label for="username">Address</label>
+                  <textarea name="address" class="form-control"></textarea>
+              </div>
+          </div>
+          <div class="col-md-12">
+              <div class="form-group">
+                  <label for="exampleFormControlFile1">Aadhar</label>
+                  <input type="file" name="aadhar" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+          </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='customer'">Cancel</button>
+            
+        </div>       
+       </form>
+</section>
+{% endblock %}

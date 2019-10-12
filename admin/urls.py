@@ -9,5 +9,9 @@ urlpatterns = [
     path('addProduct', views.addProduct, name="addproduct"),
     path('user', views.user, name="user"),
     path('addUser', views.addUser, name="addUser"),
+    path('customer', views.customer, name="customer"),
+    path('addCustomer', views.addCustomer, name="addCustomer"),
+    path('viewCustomer/<int:id>', views.viewCustomer, name="viewCustomer"),
+    path('render_pdf_view', views.render_pdf_view, name="render_pdf_view"),
     path('logout', views.logout, name="logout")
 ]
