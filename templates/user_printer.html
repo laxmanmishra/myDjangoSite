@@ -1,6 +1,6 @@
 <html>
 <head>
-		<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
 	
 	@page{
@@ -17,6 +17,17 @@
 	}
 	@page regular_template { margin: 2cm;	}
 	@page last_template { margin: 2cm;	}
+	.col{
+		display: table-cell;
+	}
+	.col-1{
+		width: 300pt;
+		padding-left: 10px;
+	}
+	.col-2{
+	    padding-left: 21px;
+	    width: 200pt;
+	}
 
 </style>
 <head>
@@ -151,6 +162,17 @@
 				</tbody>
 		</table>
 		<p align="center" >Hence If approved may register & Endorse HPA </p>
+		<div class="col col-1">
+			<table width="200pt" style="border: 0.5px solid black;padding:2px;">
+				<tr><td>CG 2</td></tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td></tr>
+			</table>
+		</div>
+		<div class="col col-2" style="">
+			<p>पजीयन लिलपक <br> बेमेतरा (छ.ग)</p>
+			<p>Registering Authority<br>RTO, Bemetara (C.G)</p>
+		</div>
 	</div>
 	<!-- switch page templates -->
 	<pdf:nexttemplate name="regular_template" />

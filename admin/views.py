@@ -117,7 +117,7 @@ def dashboard(request):
     return render(request, "index.html")
 
 def customer(request):
-    customer_list = Customer.objects.all()
+    customer_list = Customer.objects.all().order_by('id').reverse()
     paginator = Paginator(customer_list, 10) # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -132,10 +132,11 @@ def addCustomer(request):
         father_name = request.POST['father_name']
         chassis_no = request.POST['chassis_no']
         date_of_sale = request.POST['date_of_sale']
+        month_and_year_manufacture = request.POST['month_and_year_manufacture']
         address = request.POST['address']
         aadhar = request.POST['aadhar']
 
-        customer = Customer(name = name, father_name = father_name, chassisno = chassis_no, date_of_sales_letter = date_of_sale,address = address, aadhar_pdf = aadhar,month_and_year_manufacture =date_of_sale )
+        customer = Customer(name = name, father_name = father_name, chassisno = chassis_no, date_of_sales_letter = date_of_sale,address = address, aadhar_pdf = aadhar,month_and_year_manufacture =month_and_year_manufacture )
         status= customer.save()
 
 
@@ -197,6 +198,11 @@ def viewCustomer(request, id):
                     
     # return HttpResponse(customer_info)
     return render(request, "viewCustomer.html", { 'customer': customer_info })  
+
+def deleteCustomer(request,id):
+    customer_info = Customer.objects.filter(id=id).delete()
+    messages.info(request, "Customer delete Successfully")   
+    return redirect('customer')
 
 
 def product(request):  

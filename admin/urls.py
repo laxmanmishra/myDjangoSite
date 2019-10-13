@@ -12,6 +12,7 @@ urlpatterns = [
     path('customer', views.customer, name="customer"),
     path('addCustomer', views.addCustomer, name="addCustomer"),
     path('viewCustomer/<int:id>', views.viewCustomer, name="viewCustomer"),
+    path('deleteCustomer/<int:id>', views.deleteCustomer, name="deleteCustomer"),
     path('render_pdf_view', views.render_pdf_view, name="render_pdf_view"),
     path('logout', views.logout, name="logout")
 ]

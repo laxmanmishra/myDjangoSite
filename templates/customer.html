@@ -36,7 +36,7 @@
               <td>{{ customer.date_of_sales_letter }}</td>
               <td>{{ customer.month_and_year_manufacture }}</td>
               <td>{{ customer.address }}</td>
-              <th><a href="viewCustomer/{{customer.id}}"><i class="fa fa-fw fa-eye"></i></a>&nbsp;&nbsp;<a href="#"><i class="fa fa-trash-o"></i></a></th>
+              <th><a href="viewCustomer/{{customer.id}}"><i class="fa fa-fw fa-eye"></i></a>&nbsp;&nbsp;<a href="deleteCustomer/{{customer.id}}""><i class="fa fa-trash-o"></i></a></th>
             </tr>
           {% endfor %}
         </tbody>

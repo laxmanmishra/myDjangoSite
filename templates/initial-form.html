@@ -1,6 +1,7 @@
 <html>
 <head>
-		<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <style>
 	
 	@page{
@@ -10,14 +11,12 @@
             width: 562pt;
             top: 25pt;
 			height: 750pt;
-			padding: 15px;
-			
+			padding: 15px;		
             -pdf-frame-border: 1;    /* for debugging the layout */
         }
 	}
 	@page regular_template { margin: 2cm;	}
 	@page last_template { margin: 2cm;	}
-
 </style>
 <head>
 <body>
@@ -47,7 +46,7 @@
 					<tr>
 						<td align="center">3.</td>
 						<td>Address</td>
-						<td>{{customer.address}}/td>
+						<td>{{customer.address}}</td>
 					</tr>
 					<tr>
 						<td align="center">4.</td>
@@ -151,6 +150,11 @@
 				</tbody>
 		</table>
 		<p align="center" >Hence If approved may register & Endorse HPA </p>
+		<table width="200pt" align="center" style="border: 0.5px solid black;padding:2px;">
+			<tr><td>CG 2</td></tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr><td>&nbsp;</td></tr>
+		</table>
 	</div>
 	<!-- switch page templates -->
 	<pdf:nexttemplate name="regular_template" />
